@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "d1123fb2-d455-481c-aaf3-f11ea1e4ff1d",
+		"name": "Examen Java",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34020642"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/api/searchArrayFull",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"arrayA\": [\"Pollo\", \"Chile\", \"Aguacate\", \"Limon\"],\r\n    \"arrayB\": [\"Tomate\", \"Chile\", \"Mochila\", \"Melon\", \"Limon\", \"Sandia\", \"Chile\"]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/searchArrayFull",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"searchArrayFull"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/hello",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/hello",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/searchArray",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"arrayA\": [\"Pollo\", \"Chile\", \"Aguacate\", \"Limon\"],\r\n    \"arrayB\": [\"Tomate\", \"Chile\", \"Mochila\", \"Melon\", \"Limon\", \"Sandia\", \"Chile\"]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/searchArray",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"searchArray"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

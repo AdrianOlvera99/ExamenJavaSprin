@@ -1,26 +1,22 @@
 import { useState } from 'react';
-import { getHello, postSearchArrayFull, postSearchArray } from './api';
+import { postSearchArrayFull, postSearchArray } from './api';
+
+// Define la interfaz para la respuesta
+interface ApiResponse {
+  results: string[];
+}
 
 function App() {
   const [arrayA, setArrayA] = useState<string[]>([]);
   const [arrayB, setArrayB] = useState<string[]>([]);
-  const [response, setResponse] = useState<string | null>(null);
+  const [response, setResponse] = useState<ApiResponse | null>(null);
   const [productA, setProductA] = useState<string>('');
   const [productB, setProductB] = useState<string>('');
-
-  const handleGet = async () => {
-    try {
-      const res = await getHello();
-      setResponse(res);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const handlePost = async () => {
     try {
       const res = await postSearchArrayFull(arrayA, arrayB);
-      setResponse(res);
+      setResponse(JSON.parse(res));
     } catch (error) {
       console.error(error);
     }
@@ -29,7 +25,7 @@ function App() {
   const handlePut = async () => {
     try {
       const res = await postSearchArray(arrayA, arrayB);
-      setResponse(res);
+      setResponse(JSON.parse(res));
     } catch (error) {
       console.error(error);
     }
@@ -39,6 +35,8 @@ function App() {
     if (productA.trim() !== '') {
       setArrayA([...arrayA, productA]);
       setProductA('');
+    } else {
+      alert('El producto A no puede estar vacío');
     }
   };
 
@@ -46,6 +44,8 @@ function App() {
     if (productB.trim() !== '') {
       setArrayB([...arrayB, productB]);
       setProductB('');
+    } else {
+      alert('El producto B no puede estar vacío');
     }
   };
 
@@ -66,7 +66,6 @@ function App() {
       <h1 className="text-center">API Consumer</h1>
       <div className="row justify-content-center mb-3">
         <div className="col-auto">
-          <button className="btn btn-primary me-2" onClick={handleGet}>GET /api/hello</button>
           <button className="btn btn-secondary me-2" onClick={handlePost}>POST /api/searchArrayFull</button>
           <button className="btn btn-warning me-2" onClick={handlePut}>POST /api/searchArray</button>
         </div>
@@ -74,7 +73,11 @@ function App() {
       <div className="row justify-content-center">
         <div className="col">
           <h3 className="text-center mb-3">Response:</h3>
-          <pre>{response}</pre>
+          <ul className="list-group">
+            {response && response.results.map((item, index) => (
+              <li key={index} className="list-group-item">{item}</li>
+            ))}
+          </ul>
         </div>
       </div>
       <div className="row mb-3">
@@ -119,7 +122,6 @@ function App() {
       </div>
     </div>
   );
-
 }
 
 export default App;
